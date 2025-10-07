@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Гаурви Сингви — Удивительная девочка</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+      background: black;
+    }
+
+    /* Orqa video */
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -3;
+      filter: brightness(45%);
+    }
+
+    /* Yulduzli animatsiya */
+    #stars-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+    }
+
+    h1 {
+      font-size: clamp(1.8em, 4vw, 3em);
+      margin: 70px 10px 20px;
+      text-shadow: 0 0 15px rgba(255,255,255,0.4);
+    }
+
+    p {
+      width: 90%;
+      max-width: 800px;
+      margin: 10px auto;
+      font-size: clamp(1em, 2.5vw, 1.2em);
+      line-height: 1.6;
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 30px auto;
+      width: 90%;
+      max-width: 1000px;
+    }
+
+    .gallery img {
+      width: clamp(120px, 28vw, 230px);
+      height: clamp(90px, 20vw, 160px);
+      object-fit: cover;
+      border-radius: 15px;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 20px rgba(255,255,255,0.5);
+    }
+
+    .quiz {
+      background: rgba(0,0,0,0.65);
+      border-radius: 20px;
+      padding: 20px;
+      width: 90%;
+      max-width: 700px;
+      margin: 40px auto 100px;
+      text-align: left;
+    }
+
+    .quiz h2 {
+      text-align: center;
+      color: #ffd700;
+      font-size: clamp(1.4em, 3vw, 2em);
+    }
+
+    .question {
+      margin: 15px 0;
+      font-size: clamp(1em, 2.2vw, 1.1em);
+    }
+
+    label {
+      display: block;
+      margin: 5px 0;
+      cursor: pointer;
+    }
+
+    button {
+      display: block;
+      margin: 25px auto;
+      padding: 12px 25px;
+      font-size: clamp(1em, 2.5vw, 1.2em);
+      border: none;
+      border-radius: 10px;
+      background: #ffd700;
+      color: black;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background: #ffb300;
+      transform: scale(1.05);
+    }
+
+    .correct { color: #00ff88; font-weight: bold; }
+    .wrong { color: #ff4444; font-weight: bold; }
+
+    /* Neon footer */
+    footer {
+      position: fixed;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: clamp(1em, 2.5vw, 1.4em);
+      font-weight: bold;
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #00eaff, 0 0 40px #00aaff;
+      animation: glow 2s ease-in-out infinite alternate;
+      letter-spacing: 2px;
+      z-index: 10;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #0ff, 0 0 20px #00eaff, 0 0 40px #00aaff;
+      }
+      to {
+        text-shadow: 0 0 20px #0ff, 0 0 40px #00eaff, 0 0 60px #00aaff, 0 0 80px #0099ff;
+      }
+    }
+
+    /* RESPONSIVE UCHUN QO‘SHIMCHA */
+    @media (max-width: 768px) {
+      .quiz {
+        padding: 15px;
+      }
+      .gallery {
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      p {
+        font-size: 1em;
+      }
+      .quiz h2 {
+        font-size: 1.3em;
+      }
+      .gallery img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Orqa video -->
+  <video autoplay muted loop id="bg-video">
+    <source src="https://cdn.pixabay.com/vimeo/333874225/ocean-21653.mp4?width=640" type="video/mp4">
+  </video>
+
+  <!-- Yulduzli fon -->
+  <canvas id="stars-canvas"></canvas>
+
+  <h1>Гаурви Сингви — Удивительная девочка из Индии</h1>
+
+  <p>
+    Гаурви Сингви родилась в Индии в 2006 году. Она стала самой молодой девочкой,
+    переплывшей Ла-Манш в возрасте 16 лет. Её путешествие длилось более 13 часов!
+  </p>
+  <p>
+    Гаурви начала заниматься плаванием с 3 лет. Она хотела показать, что труд и вера
+    в себя помогают достичь невозможного. После этого она стала героиней Индии и вдохновением для детей по всему миру.
+  </p>
+
+  <div class="gallery">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4gctgUZQ0avVV2zVNJfkUlQRpUrIGlH0Usw&s" alt="Гаурви Сингви">
+    <img src="https://www.olympic.uz/uploads/news/a93da05e52c857bea064d038b3b6b1b7.jpg" alt="Пловчиха">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWmhro_yFHfcCJnXh8QY9SqD3WNP-umienUQ&s" alt="Море и плавание">
+  </div>
+
+  <div class="quiz">
+    <h2>Проверь себя 🌟</h2>
+
+    <div class="question" data-correct="b">
+      <p>1️⃣ Где родилась Гаурви Сингви?</p>
+      <label><input type="radio" name="q1" value="a"> В России</label>
+      <label><input type="radio" name="q1" value="b"> В Индии</label>
+      <label><input type="radio" name="q1" value="c"> В Китае</label>
+    </div>
+
+    <div class="question" data-correct="c">
+      <p>2️⃣ Что переплыла Гаурви?</p>
+      <label><input type="radio" name="q2" value="a"> Амазонку</label>
+      <label><input type="radio" name="q2" value="b"> Гангу</label>
+      <label><input type="radio" name="q2" value="c"> Ла-Манш</label>
+    </div>
+
+    <div class="question" data-correct="a">
+      <p>3️⃣ Во сколько лет она начала плавать?</p>
+      <label><input type="radio" name="q3" value="a"> С 3 лет</label>
+      <label><input type="radio" name="q3" value="b"> С 10 лет</label>
+      <label><input type="radio" name="q3" value="c"> С 15 лет</label>
+    </div>
+
+    <div class="question" data-correct="b">
+      <p>4️⃣ Сколько часов длилось её плавание через Ла-Манш?</p>
+      <label><input type="radio" name="q4" value="a"> 5 часов</label>
+      <label><input type="radio" name="q4" value="b"> Более 13 часов</label>
+      <label><input type="radio" name="q4" value="c"> 24 часа</label>
+    </div>
+
+    <div class="question" data-correct="c">
+      <p>5️⃣ Что хотела показать Гаурви своим достижением?</p>
+      <label><input type="radio" name="q5" value="a"> Что плавание опасно</label>
+      <label><input type="radio" name="q5" value="b"> Что дети могут отдыхать</label>
+      <label><input type="radio" name="q5" value="c"> Что труд и вера в себя приносят успех</label>
+    </div>
+
+    <div class="question" data-correct="a">
+      <p>6️⃣ Из какого города родом Гаурви?</p>
+      <label><input type="radio" name="q6" value="a"> Удайпур</label>
+      <label><input type="radio" name="q6" value="b"> Мумбай</label>
+      <label><input type="radio" name="q6" value="c"> Дели</label>
+    </div>
+
+    <div class="question" data-correct="b">
+      <p>7️⃣ В каком году она переплыла Ла-Манш?</p>
+      <label><input type="radio" name="q7" value="a"> 2015</label>
+      <label><input type="radio" name="q7" value="b"> 2019</label>
+      <label><input type="radio" name="q7" value="c"> 2023</label>
+    </div>
+
+    <div class="question" data-correct="a">
+      <p>8️⃣ Кто поддерживал её во время плавания?</p>
+      <label><input type="radio" name="q8" value="a"> Родители и тренер</label>
+      <label><input type="radio" name="q8" value="b"> Только друзья</label>
+      <label><input type="radio" name="q8" value="c"> Никто</label>
+    </div>
+
+    <div class="question" data-correct="b">
+      <p>9️⃣ Какой рекорд она установила?</p>
+      <label><input type="radio" name="q9" value="a"> Самая быстрая пловчиха</label>
+      <label><input type="radio" name="q9" value="b"> Самая молодая девушка из Азии, переплывшая Ла-Манш</label>
+      <label><input type="radio" name="q9" value="c"> Самая высокая спортсменка</label>
+    </div>
+
+    <div class="question" data-correct="c">
+      <p>🔟 Что любит делать Гаурви кроме плавания?</p>
+      <label><input type="radio" name="q10" value="a"> Играть в шахматы</label>
+      <label><input type="radio" name="q10" value="b"> Кататься на коньках</label>
+      <label><input type="radio" name="q10" value="c"> Спорт и путешествия</label>
+    </div>
+
+    <button onclick="checkAnswers()">Проверить ответы</button>
+    <p id="result"></p>
+  </div>
+
+  <footer>💫 Автор проекта: Камронбек Икрамов 💫</footer>
+
+  <script>
+    // Test funksiyasi
+    function checkAnswers() {
+      let score = 0;
+      const questions = document.querySelectorAll(".question");
+      questions.forEach((q) => {
+        const correct = q.dataset.correct;
+        const selected = q.querySelector("input:checked");
+        if (selected) {
+          const labels = q.querySelectorAll("label");
+          labels.forEach(l => l.classList.remove("correct", "wrong"));
+          if (selected.value === correct) {
+            score++;
+            selected.parentElement.classList.add("correct");
+          } else {
+            selected.parentElement.classList.add("wrong");
+          }
+        }
+      });
+      document.getElementById("result").innerHTML =
+        "✅ Правильных ответов: " + score + " из " + questions.length;
+    }
+
+    // Yulduzli fon
+    const canvas = document.getElementById("stars-canvas");
+    const ctx = canvas.getContext("2d");
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    const stars = [];
+    for (let i = 0; i < 200; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2,
+        d: Math.random() + 0.5,
+      });
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "white";
+      stars.forEach((s) => {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      moveStars();
+    }
+
+    function moveStars() {
+      stars.forEach((s) => {
+        s.y += s.d;
+        if (s.y > canvas.height) s.y = 0;
+      });
+    }
+
+    function animate() {
+      drawStars();
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</body>
+</html>
